@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function Login() {
 
-    const app_name = 'cop4331-mern-stack-demo-e29148eeacd2'
+    const app_name = 'mern-lab-demo-e227abd26079'
     function buildPath(route)
     {
         if (process.env.NODE_ENV === 'production') 

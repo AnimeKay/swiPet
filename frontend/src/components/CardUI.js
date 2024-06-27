@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 function CardUI() {
 
-    const app_name = 'cop4331-mern-stack-demo-e29148eeacd2'
+    const app_name = 'mern-lab-demo-e227abd26079'
     function buildPath(route) {
         if (process.env.NODE_ENV === 'production') {
             return 'https://' + app_name + '.herokuapp.com/' + route;
