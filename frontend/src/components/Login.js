@@ -2,19 +2,10 @@ import React, { useState } from 'react'
 
 function Login() {
 
-    const app_name = 'mern-lab-demo-e227abd26079'
-    function buildPath(route)
-    {
-        if (process.env.NODE_ENV === 'production') 
-        {
-            return 'https://' + app_name +  '.herokuapp.com/' + route;
-        }
-        else
-        {        
-            return 'http://localhost:5000/' + route;
-        }
-    }
-    
+    //Import build path function
+    var bp = require('./Path.js');
+
+
 
     var loginName;
     var loginPassword;
@@ -29,7 +20,7 @@ function Login() {
         var js = JSON.stringify(obj);
 
         try {
-            const response = await fetch(buildPath('api/login'),
+            const response = await fetch(bp.buildPath('api/login'),
                 { method: 'POST', body: js, headers: { 'Content-Type': 'application/json' } });
 
             var res = JSON.parse(await response.text());

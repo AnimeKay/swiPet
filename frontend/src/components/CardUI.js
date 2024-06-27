@@ -2,15 +2,8 @@ import React, { useState } from 'react'
 
 function CardUI() {
 
-    const app_name = 'mern-lab-demo-e227abd26079'
-    function buildPath(route) {
-        if (process.env.NODE_ENV === 'production') {
-            return 'https://' + app_name + '.herokuapp.com/' + route;
-        }
-        else {
-            return 'http://localhost:5000/' + route;
-        }
-    }
+    //Import build path function
+    var bp = require('./Path.js');
 
 
     var card = '';
@@ -34,12 +27,15 @@ function CardUI() {
         var js = JSON.stringify(obj);
 
         try {
-            // const response = await fetch('http://localhost:5000/api/addcard',
-            const response = await fetch(buildPath('api/addcard'),
+            // dont remove await!!!!
+            // const response = fetch('http://localhost:5000/api/addcard',
+            const response = await fetch(bp.buildPath('api/addcard'),
                 { method: 'POST', body: js, headers: { 'Content-Type': 'application/json' } });
 
-            var txt = await response.text();
-            var res = JSON.parse(txt);
+            // var txt = await response.text();
+            // var res = JSON.parse(txt);
+
+            let res = await response.json();
 
             if (res.error.length > 0) {
                 setMessage("API Error:" + res.error);
@@ -61,11 +57,12 @@ function CardUI() {
         var js = JSON.stringify(obj);
 
         try {
-            const response = await fetch(buildPath('api/searchcards'),
+            const response = await fetch(bp.buildPath('api/searchcards'),
                 { method: 'POST', body: js, headers: { 'Content-Type': 'application/json' } });
 
             var txt = await response.text();
             var res = JSON.parse(txt);
+            // let res = response.json();
             var _results = res.results;
             var resultText = '';
             for (var i = 0; i < _results.length; i++) {
