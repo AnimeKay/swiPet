@@ -32,6 +32,9 @@ function CardUI() {
             const response = await fetch(bp.buildPath('api/addcard'),
                 { method: 'POST', body: js, headers: { 'Content-Type': 'application/json' } });
 
+
+            // These don't work here, but response.json()
+            // works here    
             // var txt = await response.text();
             // var res = JSON.parse(txt);
 
@@ -60,6 +63,8 @@ function CardUI() {
             const response = await fetch(bp.buildPath('api/searchcards'),
                 { method: 'POST', body: js, headers: { 'Content-Type': 'application/json' } });
 
+            // For whatever reason, response.json()
+            // does not work here
             var txt = await response.text();
             var res = JSON.parse(txt);
             // let res = response.json();
